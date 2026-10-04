@@ -55,6 +55,55 @@
 
         </section>
 
+        <section id="catalog-container">
+
+    <!-- JavaScript will load the albums here -->
+
+</section>
+
+
+<section class="order-section" id="order-section">
+
+    <p class="section-label">Order</p>
+    <h2>Complete Your Order</h2>
+
+    <p class="selected-album-text">
+        Selected Album:
+        <span id="selected-album">None</span>
+    </p>
+
+    <form id="order-form">
+
+        <div class="form-group">
+            <label for="customer-name">Name</label>
+            <input
+                type="text"
+                id="customer-name"
+                placeholder="Your name"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="customer-email">Email</label>
+            <input
+                type="email"
+                id="customer-email"
+                placeholder="example@email.com"
+                required
+            >
+        </div>
+
+        <button type="submit" class="order-button">
+            Place Order
+        </button>
+
+    </form>
+
+    <p id="order-message"></p>
+
+</section>
+
     </main>
 
 

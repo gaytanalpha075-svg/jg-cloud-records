@@ -340,3 +340,72 @@ footer {
     }
 
 }
+/* Order Section */
+
+.order-section {
+    margin-top: 100px;
+    padding-top: 60px;
+    border-top: 1px solid #2b2b2b;
+    max-width: 750px;
+}
+
+.order-section h2 {
+    font-size: 42px;
+    margin: 10px 0 25px;
+}
+
+.selected-album-text {
+    color: #bdbdbd;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+#selected-album {
+    color: #7cff66;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    font-size: 17px;
+}
+
+.form-group input {
+    background-color: #101010;
+    color: #f5f5f5;
+    border: 1px solid #3a3a3a;
+    padding: 14px;
+    font-family: "Constantia", Georgia, "Times New Roman", serif;
+    font-size: 16px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #7cff66;
+}
+
+.order-button {
+    background-color: transparent;
+    color: #f5f5f5;
+    border: 1px solid #555555;
+    padding: 13px 22px;
+    font-family: "Constantia", Georgia, "Times New Roman", serif;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.order-button:hover {
+    color: #7cff66;
+    border-color: #7cff66;
+}
+
+#order-message {
+    margin-top: 20px;
+    color: #7cff66;
+    font-size: 17px;
+}

@@ -391,8 +391,10 @@ function renderCatalog(data) {
                         ${album.description}
                     </p>
 
-                    <button class="select-album">
-                        Select Album
+                    <button
+                      class="select-album"
+                     data-album="${album.title}">
+                      Select Album
                     </button>
                 `;
 
@@ -405,9 +407,95 @@ function renderCatalog(data) {
 
         catalogContainer.appendChild(genreSection);
     });
+
+    const albumButtons = document.querySelectorAll(".select-album");
+
+albumButtons.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        const albumName = button.dataset.album;
+
+        document.getElementById("selected-album").textContent = albumName;
+
+        document.getElementById("order-section").scrollIntoView({
+            behavior: "smooth"
+        });
+
+    });
+
+});
+
 }
 
 
 if (catalogContainer) {
     loadCatalog();
+}
+
+const orderForm = document.getElementById("order-form");
+
+if (orderForm) {
+
+    orderForm.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+        const customerName =
+            document.getElementById("customer-name").value;
+
+        const customerEmail =
+            document.getElementById("customer-email").value;
+
+        const selectedAlbum =
+            document.getElementById("selected-album").textContent;
+
+        if (selectedAlbum === "None") {
+            document.getElementById("order-message").textContent =
+                "Please select an album first.";
+            return;
+        }
+
+        console.log("Name:", customerName);
+        console.log("Email:", customerEmail);
+        console.log("Album:", selectedAlbum);
+
+       try {
+
+    const response = await fetch(
+        "https://s75tshdfn6.execute-api.us-east-2.amazonaws.com/order",
+        {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                name: customerName,
+                email: customerEmail,
+                album: selectedAlbum
+            })
+        }
+    );
+
+    const result = await response.json();
+
+    if (!response.ok) {
+        throw new Error(result.message || "Order failed.");
+    }
+
+    document.getElementById("order-message").textContent =
+        result.message;
+
+} catch (error) {
+
+    console.error("Order error:", error);
+
+    document.getElementById("order-message").textContent =
+        "There was a problem sending your order.";
+}
+
+    });
+
 }
