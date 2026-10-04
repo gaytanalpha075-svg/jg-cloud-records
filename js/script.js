@@ -308,9 +308,45 @@ const catalogData = [
 
 const catalogContainer = document.getElementById("catalog-container");
 
-if (catalogContainer) {
+const API_URL =
+    "https://s75tshdfn6.execute-api.us-east-2.amazonaws.com/albums";
 
-    catalogData.forEach((genre) => {
+
+async function loadCatalog() {
+
+    try {
+
+        const response = await fetch(API_URL);
+
+        if (!response.ok) {
+            throw new Error("Could not load catalog from AWS.");
+        }
+
+        const cloudCatalogData = await response.json();
+
+        renderCatalog(cloudCatalogData);
+
+        console.log("Catalog loaded from AWS.");
+
+    } catch (error) {
+
+        console.error("AWS error:", error);
+
+        // Local catalog used as backup
+        renderCatalog(catalogData);
+    }
+}
+
+
+function renderCatalog(data) {
+
+    if (!catalogContainer) {
+        return;
+    }
+
+    catalogContainer.innerHTML = "";
+
+    data.forEach((genre) => {
 
         const genreSection = document.createElement("section");
         genreSection.classList.add("catalog-genre");
@@ -369,4 +405,9 @@ if (catalogContainer) {
 
         catalogContainer.appendChild(genreSection);
     });
+}
+
+
+if (catalogContainer) {
+    loadCatalog();
 }
