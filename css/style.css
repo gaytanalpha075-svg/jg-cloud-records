@@ -210,3 +210,133 @@ footer {
 #catalog-container {
     min-height: 300px;
 }
+
+/* Dynamic Catalog Content */
+
+.catalog-genre {
+    margin-bottom: 100px;
+    scroll-margin-top: 40px;
+}
+
+.catalog-genre h2 {
+    font-size: 46px;
+    margin: 0 0 45px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #2b2b2b;
+}
+
+
+/* Artist section */
+
+.artist-block {
+    margin-bottom: 70px;
+    padding: 30px;
+    border: 1px solid #2f2f2f;
+    background-color: #141414;
+}
+
+.artist-info h3 {
+    font-size: 32px;
+    margin: 20px 0 25px;
+}
+
+
+/* Artist image */
+
+.artist-image {
+    width: 100%;
+    height: 280px;
+    background-color: #1d1d1d;
+    overflow: hidden;
+    border: 1px solid #333333;
+}
+
+.artist-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+
+/* Album layout */
+
+.albums-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.album-card {
+    border: 1px solid #333333;
+    padding: 25px;
+    background-color: #101010;
+    transition: 0.2s ease;
+}
+
+.album-card:hover {
+    border-color: #7cff66;
+    transform: translateY(-3px);
+}
+
+.album-card h4 {
+    font-size: 25px;
+    margin: 0 0 10px;
+}
+
+.album-details {
+    color: #7cff66;
+    font-size: 16px;
+    margin-bottom: 18px;
+}
+
+.album-description {
+    color: #bdbdbd;
+    font-size: 17px;
+    line-height: 1.6;
+    min-height: 80px;
+}
+
+
+/* Select album button */
+
+.select-album {
+    margin-top: 15px;
+    padding: 11px 18px;
+    background-color: transparent;
+    color: #f5f5f5;
+    border: 1px solid #555555;
+
+    font-family: "Constantia", Georgia, "Times New Roman", serif;
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+.select-album:hover {
+    color: #7cff66;
+    border-color: #7cff66;
+}
+
+
+/* Mobile catalog */
+
+@media (max-width: 750px) {
+
+    .catalog-page {
+        padding: 70px 22px;
+    }
+
+    .catalog-header h1 {
+        font-size: 42px;
+    }
+
+    .albums-container {
+        grid-template-columns: 1fr;
+    }
+
+    .artist-image {
+        height: 220px;
+    }
+
+}
