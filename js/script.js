@@ -146,6 +146,24 @@ if (orderForm) {
 
         const selectedAlbum =
             document.getElementById("selected-album").textContent;
+        
+        const cleanName = customerName.trim();
+const cleanEmail = customerEmail.trim().toLowerCase();
+
+const emailPattern =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+if (!cleanName) {
+    document.getElementById("order-message").textContent =
+        "Please enter your name.";
+    return;
+}
+
+if (!emailPattern.test(cleanEmail)) {
+    document.getElementById("order-message").textContent =
+        "Please enter a valid email address.";
+    return;
+}
 
         if (selectedAlbum === "None") {
             document.getElementById("order-message").textContent =
@@ -169,8 +187,8 @@ if (orderForm) {
             },
 
             body: JSON.stringify({
-                name: customerName,
-                email: customerEmail,
+                name: cleanName,
+                email: cleanEmail,
                 album: selectedAlbum
             })
         }
@@ -190,7 +208,8 @@ if (orderForm) {
     console.error("Order error:", error);
 
     document.getElementById("order-message").textContent =
-        "There was a problem sending your order.";
+        error.message || "There was a problem sending your order.";
+
 }
 
     });
