@@ -143,20 +143,32 @@ async function handleCognitoCallback() {
 function updateAuthUI() {
     const idToken = sessionStorage.getItem("id_token");
 
-    const signInButton =
-        document.getElementById("signIn");
+    const signInButton = document.getElementById("signIn");
+    const signOutButton = document.getElementById("signOut");
+    const userGreeting = document.getElementById("userGreeting");
 
-    const signOutButton =
-        document.getElementById("signOut");
-
-    if (!signInButton || !signOutButton) {
+    if (!signInButton || !signOutButton || !userGreeting) {
         return;
     }
 
     if (idToken) {
+        const payload = JSON.parse(
+            atob(
+                idToken
+                    .split(".")[1]
+                    .replace(/-/g, "+")
+                    .replace(/_/g, "/")
+            )
+        );
+
+        userGreeting.textContent =
+            `Hi, ${payload.email}`;
+
+        userGreeting.style.display = "inline";
         signInButton.style.display = "none";
         signOutButton.style.display = "inline";
     } else {
+        userGreeting.style.display = "none";
         signInButton.style.display = "inline";
         signOutButton.style.display = "none";
     }
